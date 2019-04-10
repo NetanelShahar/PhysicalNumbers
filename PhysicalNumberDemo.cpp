@@ -41,21 +41,24 @@ int main()
     //     cout << ex.what() << endl; // Prints "Units do not match - [m] cannot be converted to [kg]"
     //   }
 
-    PhysicalNumber a(443, Unit::SEC);
-    PhysicalNumber b(7, Unit::HOUR);
+    PhysicalNumber a(443, Unit::KM);
+    PhysicalNumber b(7, Unit::M);
     // cout<<b.num_unit<<endl;
 
     // PhysicalNumber c = a + b;
-    // cout<<"maybe success"<<endl;
-    // cout<<c.data<<endl<<c.num_unit<<endl;
+    // cout << c.data << endl
+    //      << c.num_unit << endl;
 
-    cout<<a.sameFamily(b)<<endl;
+    // a += b;
+    --a;
+    cout << a.data << endl;
+    ++a;
+    cout << a.data << endl;
+        //  << a.num_unit << endl
+        //  << b.data << endl
+        //  << b.num_unit << endl;
 
-
-    
-
-
-
+    // cout<<a.sameFamily(b)<<endl;
   }
   catch (...)
   {

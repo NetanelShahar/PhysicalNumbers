@@ -10,37 +10,50 @@ using namespace ariel;
 
 PhysicalNumber ariel::PhysicalNumber ::operator+(const PhysicalNumber &other)
 {
+    if (!this->sameFamily(other))
+        throw string("this tree does alredy contains ");
     double result = this->data + other.data;
     return PhysicalNumber(result, this->num_unit);
 }
 
-// PhysicalNumber PhysicalNumber::operator-(PhysicalNumber &other)
-// {
-//     return other;
-// }
+PhysicalNumber PhysicalNumber::operator-(PhysicalNumber &other)
+{
+    if (!this->sameFamily(other))
+        throw string("this tree does alredy contains ");
+    if (!this->sameFamily(other))
+        throw string("this tree does alredy contains ");
+    double result = this->data - other.data;
+    return PhysicalNumber(result, this->num_unit);
+}
 
-// PhysicalNumber &PhysicalNumber::operator+=(const PhysicalNumber &other)
-// {
-//     return *this;
-// }
-// PhysicalNumber &PhysicalNumber::operator-=(const PhysicalNumber &other)
-// {
-//     return *this;
-// }
+PhysicalNumber &PhysicalNumber::operator+=(const PhysicalNumber &other)
+{
+    if (!this->sameFamily(other))
+        throw string("this tree does alredy contains ");
+    this->data += other.data;
+    return *this;
+}
+PhysicalNumber &PhysicalNumber::operator-=(const PhysicalNumber &other)
+{
+    if (!this->sameFamily(other))
+        throw string("this tree does alredy contains ");
+    this->data -= other.data;
+    return *this;
+}
 
-// const PhysicalNumber PhysicalNumber::operator+()
-// {
-//     return PhysicalNumber(0, Unit::M);
-// }
-// const PhysicalNumber PhysicalNumber::operator-()
-// {
-//     return PhysicalNumber(0, Unit::M);
-// }
+const PhysicalNumber PhysicalNumber::operator+()     //////////////////      CHECK ABOUT THE UNARY!!!!!       //////////
+{
+    return PhysicalNumber(this->data, this->num_unit);
+}
+const PhysicalNumber PhysicalNumber::operator-()
+{
+    return PhysicalNumber(-1*this->data, this->num_unit);
+}
 
-// const bool PhysicalNumber::operator>(const PhysicalNumber &other)
-// {
-//     return false;
-// }
+const bool PhysicalNumber::operator>(const PhysicalNumber &other)
+{
+    return false;
+}
 // const bool PhysicalNumber::operator<(const PhysicalNumber &other)
 // {
 //     return false;
@@ -63,14 +76,16 @@ PhysicalNumber ariel::PhysicalNumber ::operator+(const PhysicalNumber &other)
 //     return false;
 // }
 
-// PhysicalNumber &PhysicalNumber::operator++()
-// {
-//     return *this;
-// }
-// PhysicalNumber &PhysicalNumber::operator--()
-// {
-//     return *this;
-// }
+PhysicalNumber &PhysicalNumber::operator++()
+{
+    this->data += 1;
+    return *this;
+}
+PhysicalNumber &PhysicalNumber::operator--()
+{
+    this->data -= 1;
+    return *this;
+}
 
 // ostream &ariel::operator<<(ostream &os, const PhysicalNumber &pn)
 // {
