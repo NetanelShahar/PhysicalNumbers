@@ -7,38 +7,55 @@ namespace ariel
 
 class PhysicalNumber
 {
-  private:
-    Unit unit;
-    double data;
+private:
+public:
+  Unit num_unit;
+  double data;
 
-  public:
-    //
-    //constructor
-    PhysicalNumber(double data, Unit unit);
-    //
-    // (+) and (-) operators
-    PhysicalNumber operator+(PhysicalNumber& other);
-    PhysicalNumber operator-(PhysicalNumber& other);
-    //
-    //(+=) and (-=) operators
-    PhysicalNumber& operator+=(const PhysicalNumber& other);
-    PhysicalNumber& operator-=(const PhysicalNumber& other);
-    //
-    // onary (+) and (-) operators
-    const PhysicalNumber operator+();
-    const PhysicalNumber operator-();
-    //
-    const bool operator>(const PhysicalNumber& other);
-    const bool operator<(const PhysicalNumber& other);
-    const bool operator<=(const PhysicalNumber& other);
-    const bool operator>=(const PhysicalNumber& other);
-    const bool operator==(const PhysicalNumber& other);
-    const bool operator!=(const PhysicalNumber& other);
+  //
+  //constructor
+  PhysicalNumber(double data, Unit unit_type)
+  {
+    this->num_unit = unit_type;
+    this->data = data;
+  }
 
-    PhysicalNumber& operator++();
-    PhysicalNumber& operator--();
+  ~PhysicalNumber() {}
 
-    friend ostream& operator<<(ostream& os, const PhysicalNumber& c);
-    friend istream& operator>>(istream& is, PhysicalNumber& c);
+  // PhysicalNumber(double data, Unit unit);    ///// I THINK TO REMOVE IT!!!   /////////
+  // //
+  // (+) and (-) operators
+  PhysicalNumber operator+(const PhysicalNumber &other);
+  // PhysicalNumber operator-(PhysicalNumber &other);
+  // //
+  // //(+=) and (-=) operators
+  // PhysicalNumber &operator+=(const PhysicalNumber &other);
+  // PhysicalNumber &operator-=(const PhysicalNumber &other);
+  // //
+  // // onary (+) and (-) operators
+  // const PhysicalNumber operator+();
+  // const PhysicalNumber operator-();
+  // //
+  // const bool operator>(const PhysicalNumber &other);
+  // const bool operator<(const PhysicalNumber &other);
+  // const bool operator<=(const PhysicalNumber &other);
+  // const bool operator>=(const PhysicalNumber &other);
+  // const bool operator==(const PhysicalNumber &other);
+  // const bool operator!=(const PhysicalNumber &other);
+
+  // PhysicalNumber &operator++();
+  // PhysicalNumber &operator--();
+
+  // friend ostream &operator<<(ostream &os, const PhysicalNumber &c);
+  // friend istream &operator>>(istream &is, PhysicalNumber &c);
+
+  // ///////////////////////////////////////////////////////////
+  // bool unitCheck(PhysicalNumber first, PhysicalNumber second);
+  // int whichNum();     ////  MAYBE I WILL USE IT LATER    ////
+  string whichUnit();
+  bool sameFamily(const PhysicalNumber &other);
 };
+// ostream &operator<<(ostream &os, const PhysicalNumber &c);
+// istream &operator>>(istream &is, PhysicalNumber &c);
+
 } // namespace ariel

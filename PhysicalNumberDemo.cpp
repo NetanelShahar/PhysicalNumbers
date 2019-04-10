@@ -13,36 +13,54 @@ using std::cout, std::endl, std::boolalpha, std::istringstream;
 #include "Unit.h"
 using ariel::PhysicalNumber, ariel::Unit;
 
-int main() {
-  try {
-    PhysicalNumber a(2, Unit::KM);   // 2 kilometers
-    PhysicalNumber b(300, Unit::M);  // 300 meters
-    cout << a << endl;   // Prints "2[km]"
-    cout << (a+b) << endl;   // Prints "2.3[km]"
-    cout << (b-a) << endl;   // Prints "-1700[m]"
-    cout << (-a) << endl;   // Prints "-2[km]"
+int main()
+{
+  try
+  {
+    //   PhysicalNumber a(2, Unit::KM);   // 2 kilometers
+    //   PhysicalNumber b(300, Unit::M);  // 300 meters
+    //   cout << a << endl;   // Prints "2[km]"
+    //   cout << (a+b) << endl;   // Prints "2.3[km]"
+    //   cout << (b-a) << endl;   // Prints "-1700[m]"
+    //   cout << (-a) << endl;   // Prints "-2[km]"
 
-    cout << boolalpha; // print booleans as strings from now on:
-    cout << (a>b) << endl;  // Prints "true"
-    cout << (a<=b) << endl;  // Prints "false"
-    cout << (a==PhysicalNumber(2000, Unit::M)) << endl;  // Prints "true"
+    //   cout << boolalpha; // print booleans as strings from now on:
+    //   cout << (a>b) << endl;  // Prints "true"
+    //   cout << (a<=b) << endl;  // Prints "false"
+    //   cout << (a==PhysicalNumber(2000, Unit::M)) << endl;  // Prints "true"
 
-    istringstream input("700[kg]");
-    input >> a;
-    cout << a << endl;   // Prints "700[kg]"
-    cout << (a += PhysicalNumber(1, Unit::TON)) << endl;  // prints "1700[kg]"
-    cout << a << endl;   // Prints "1700[kg]" since a has changed.
+    //   istringstream input("700[kg]");
+    //   input >> a;
+    //   cout << a << endl;   // Prints "700[kg]"
+    //   cout << (a += PhysicalNumber(1, Unit::TON)) << endl;  // prints "1700[kg]"
+    //   cout << a << endl;   // Prints "1700[kg]" since a has changed.
 
-    try {
-      cout << (a+b) << endl;  
-    } catch (const std::exception& ex) {
-      cout << ex.what() << endl; // Prints "Units do not match - [m] cannot be converted to [kg]"
-    }
-  } catch (...) {
+    //   try {
+    //     cout << (a+b) << endl;
+    //   } catch (const std::exception& ex) {
+    //     cout << ex.what() << endl; // Prints "Units do not match - [m] cannot be converted to [kg]"
+    //   }
+
+    PhysicalNumber a(443, Unit::SEC);
+    PhysicalNumber b(7, Unit::HOUR);
+    // cout<<b.num_unit<<endl;
+
+    // PhysicalNumber c = a + b;
+    // cout<<"maybe success"<<endl;
+    // cout<<c.data<<endl<<c.num_unit<<endl;
+
+    cout<<a.sameFamily(b)<<endl;
+
+
+    
+
+
+
+  }
+  catch (...)
+  {
     cout << "Unexpected exception!" << endl;
   }
 
-  cout<<"blalalala"<<endl;
   return 100;
 }
-
