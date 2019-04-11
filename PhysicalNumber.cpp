@@ -8,73 +8,196 @@
 using namespace std;
 using namespace ariel;
 
+const string name[9] = {"cm", "m", "km", "sec", "min", "hour", "g", "kg", "ton"};
+
 PhysicalNumber ariel::PhysicalNumber ::operator+(const PhysicalNumber &other)
 {
     if (!this->sameFamily(other))
         throw string("this tree does alredy contains ");
-    double result = this->data + other.data;
-    return PhysicalNumber(result, this->num_unit);
+
+    PhysicalNumber temp(other.data, other.num_unit);
+    PhysicalNumber *Ptemp = &temp;
+
+    makeITsimple(*this);
+    makeITsimple(*Ptemp);
+
+    double result = this->data + temp.data;
+
+    PhysicalNumber new_number(result, this->num_unit);
+    PhysicalNumber *pnew_number = &new_number;
+
+    letsGOback(*pnew_number);
+    letsGOback(*this);
+
+    return new_number;
 }
 
-PhysicalNumber PhysicalNumber::operator-(PhysicalNumber &other)
+PhysicalNumber PhysicalNumber::operator-(const PhysicalNumber &other)
 {
     if (!this->sameFamily(other))
         throw string("this tree does alredy contains ");
-    if (!this->sameFamily(other))
-        throw string("this tree does alredy contains ");
-    double result = this->data - other.data;
-    return PhysicalNumber(result, this->num_unit);
+
+    PhysicalNumber temp(other.data, other.num_unit);
+    PhysicalNumber *Ptemp = &temp;
+
+    makeITsimple(*this);
+    makeITsimple(*Ptemp);
+
+    double result = this->data - temp.data;
+
+    PhysicalNumber new_number(result, this->num_unit);
+    PhysicalNumber *pnew_number = &new_number;
+
+    letsGOback(*pnew_number);
+    letsGOback(*this);
+
+    return new_number;
 }
 
 PhysicalNumber &PhysicalNumber::operator+=(const PhysicalNumber &other)
 {
     if (!this->sameFamily(other))
         throw string("this tree does alredy contains ");
-    this->data += other.data;
+
+    PhysicalNumber temp(other.data, other.num_unit);
+    PhysicalNumber *Ptemp = &temp;
+
+    makeITsimple(*this);
+    makeITsimple(*Ptemp);
+
+    this->data += Ptemp->data;
+
+    letsGOback(*this);
     return *this;
 }
 PhysicalNumber &PhysicalNumber::operator-=(const PhysicalNumber &other)
 {
     if (!this->sameFamily(other))
         throw string("this tree does alredy contains ");
-    this->data -= other.data;
+
+    PhysicalNumber temp(other.data, other.num_unit);
+    PhysicalNumber *Ptemp = &temp;
+
+    makeITsimple(*this);
+    makeITsimple(*Ptemp);
+
+    this->data -= Ptemp->data;
+
+    letsGOback(*this);
     return *this;
 }
 
-const PhysicalNumber PhysicalNumber::operator+()     //////////////////      CHECK ABOUT THE UNARY!!!!!       //////////
+const PhysicalNumber PhysicalNumber::operator+() //////////////////      CHECK ABOUT THE UNARY!!!!!       //////////
 {
-    return PhysicalNumber(this->data, this->num_unit);
+    return PhysicalNumber(this->data, this->num_unit); ///////////////////////////////////////////////////////////////////
 }
-const PhysicalNumber PhysicalNumber::operator-()
+const PhysicalNumber PhysicalNumber::operator-() ///////////////////////////////////////////////////////////////////
 {
-    return PhysicalNumber(-1*this->data, this->num_unit);
+    return PhysicalNumber(-1 * this->data, this->num_unit); //////////////////      CHECK ABOUT THE UNARY!!!!!       //////////
 }
 
 const bool PhysicalNumber::operator>(const PhysicalNumber &other)
 {
-    return false;
-}
-// const bool PhysicalNumber::operator<(const PhysicalNumber &other)
-// {
-//     return false;
-// }
-// const bool PhysicalNumber::operator<=(const PhysicalNumber &other)
-// {
-//     return false;
-// }
-// const bool PhysicalNumber::operator>=(const PhysicalNumber &other)
-// {
-//     return false;
-// }
-// const bool PhysicalNumber::operator==(const PhysicalNumber &other)
-// {
-//     return false;
-// }
-// const bool PhysicalNumber::operator!=(const PhysicalNumber &other)
-// {
+    if (!this->sameFamily(other))
+        throw string("this tree does alredy contains ");
 
-//     return false;
-// }
+    PhysicalNumber temp(other.data, other.num_unit);
+    PhysicalNumber *Ptemp = &temp;
+
+    makeITsimple(*this);
+    makeITsimple(*Ptemp);
+
+    bool ans = this->data > Ptemp->data;
+
+    letsGOback(*this);
+
+    return ans;
+}
+const bool PhysicalNumber::operator<(const PhysicalNumber &other)
+{
+    if (!this->sameFamily(other))
+        throw string("this tree does alredy contains ");
+
+    PhysicalNumber temp(other.data, other.num_unit);
+    PhysicalNumber *Ptemp = &temp;
+
+    makeITsimple(*this);
+    makeITsimple(*Ptemp);
+
+    bool ans = this->data < Ptemp->data;
+
+    letsGOback(*this);
+
+    return ans;
+}
+const bool PhysicalNumber::operator<=(const PhysicalNumber &other)
+{
+    if (!this->sameFamily(other))
+        throw string("this tree does alredy contains ");
+
+    PhysicalNumber temp(other.data, other.num_unit);
+    PhysicalNumber *Ptemp = &temp;
+
+    makeITsimple(*this);
+    makeITsimple(*Ptemp);
+
+    bool ans = this->data <= Ptemp->data;
+
+    letsGOback(*this);
+
+    return ans;
+}
+const bool PhysicalNumber::operator>=(const PhysicalNumber &other)
+{
+    if (!this->sameFamily(other))
+        throw string("this tree does alredy contains ");
+
+    PhysicalNumber temp(other.data, other.num_unit);
+    PhysicalNumber *Ptemp = &temp;
+
+    makeITsimple(*this);
+    makeITsimple(*Ptemp);
+
+    bool ans = this->data >= Ptemp->data;
+
+    letsGOback(*this);
+
+    return ans;
+}
+const bool PhysicalNumber::operator==(const PhysicalNumber &other)
+{
+    if (!this->sameFamily(other))
+        throw string("this tree does alredy contains ");
+
+    PhysicalNumber temp(other.data, other.num_unit);
+    PhysicalNumber *Ptemp = &temp;
+
+    makeITsimple(*this);
+    makeITsimple(*Ptemp);
+
+    bool ans = this->data == Ptemp->data;
+
+    letsGOback(*this);
+
+    return ans;
+}
+const bool PhysicalNumber::operator!=(const PhysicalNumber &other)
+{
+    if (!this->sameFamily(other))
+        throw string("this tree does alredy contains ");
+
+    PhysicalNumber temp(other.data, other.num_unit);
+    PhysicalNumber *Ptemp = &temp;
+
+    makeITsimple(*this);
+    makeITsimple(*Ptemp);
+
+    bool ans = this->data > Ptemp->data;
+
+    letsGOback(*this);
+
+    return ans;
+}
 
 PhysicalNumber &PhysicalNumber::operator++()
 {
@@ -87,15 +210,85 @@ PhysicalNumber &PhysicalNumber::operator--()
     return *this;
 }
 
-// ostream &ariel::operator<<(ostream &os, const PhysicalNumber &pn)
-// {
-//     return os;
-// }
+ostream &ariel::operator<<(ostream &os, const PhysicalNumber &pn)
+{
+    string type = "NO type";
+    switch (pn.num_unit)
+    {
+    case 1:
+        type = "cm";
+        break;
+    case 2:
+        type = "m";
+        break;
+    case 3:
+        type = "km";
+        break;
+    case 4:
+        type = "sec";
+        break;
+    case 5:
+        type = "min";
+        break;
+    case 6:
+        type = "hour";
+        break;
+    case 7:
+        type = "g";
+        break;
+    case 8:
+        type = "kg";
+        break;
+    case 9:
+        type = "ton";
+        break;
 
-// istream &ariel::operator>>(istream &is, PhysicalNumber &pn)
-// {
-//     return is;
-// }
+    default:
+        cout << "default case=0";
+        break;
+    }
+
+    return (os << pn.data << '[' << type << ']');
+}
+////////////////////////////////////////////////////             REWRITE!!!!!!!!!!            /////////////////////////////////////
+bool is_number(const std::string &s)
+{
+    std::string::const_iterator it = s.begin();
+    while (it != s.end() && std::isdigit(*it))
+        ++it;
+    return !s.empty() && it == s.end();
+}
+
+istream &ariel::operator>>(istream &is, PhysicalNumber &pn)
+{
+    string num, s, type;
+    bool flag = false;
+    is >> s;
+    num = s.substr(0, s.find("["));
+    if (is_number(num))
+    {
+        printf("iiii");
+        flag = true;
+        pn.data = stod(num);
+    }
+
+    type = s.substr(s.find("[") + 1, s.length() - s.find("[") - 2);
+    for (size_t i = 0; i < 9; i++)
+    {
+        if (name[i] == type)
+        {
+            pn.data = (Unit)i;
+            flag = true;
+        }
+    }
+
+    if (flag == false)
+    {
+        __throw_invalid_argument("syntaxt not good");
+    }
+    return is;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // bool PhysicalNumber::unitCheck(PhysicalNumber first, PhysicalNumber second)
 // {
@@ -207,4 +400,92 @@ bool PhysicalNumber::sameFamily(const PhysicalNumber &other)
         return false;
     }
     return false;
+}
+
+void PhysicalNumber::makeITsimple(PhysicalNumber &num)
+{
+    // cout << "in makeITsimple" << endl;
+
+    // int result=0;
+    switch (num.num_unit)
+    {
+    case 1:
+        num.data = num.data; //cm
+        break;
+    case 2:
+        num.data = num.data * 100; //m
+        break;
+    case 3:
+        num.data = num.data * 1000 * 100; //km
+        // cout << num.data << endl;
+        break;
+    case 4:
+        num.data = num.data; //sec
+        break;
+    case 5:
+        num.data = num.data * 60; //min
+        break;
+    case 6:
+        num.data = num.data * 60 * 60; //hour
+        break;
+    case 7:
+        num.data = num.data; //g
+        break;
+    case 8:
+        num.data = num.data * 1000; //kg
+        break;
+    case 9:
+        num.data = num.data * 1000 * 1000; //ton
+        break;
+
+    default:
+        cout << "default case=0";
+        break;
+    }
+    // cout << "out makeITsimple" << endl;
+
+    //return result;
+}
+
+void PhysicalNumber::letsGOback(PhysicalNumber &num)
+{
+    // cout << "in letsGOback" << endl;
+
+    // int result=0;
+    switch (num.num_unit)
+    {
+    case 1:
+        num.data = num.data; //cm
+        break;
+    case 2:
+        num.data = num.data / 100; //m
+        break;
+    case 3:
+        num.data = num.data / 1000 / 100; //km
+        break;
+    case 4:
+        num.data = num.data; //sec
+        break;
+    case 5:
+        num.data = num.data / 60; //min
+        break;
+    case 6:
+        num.data = num.data / 60 / 60; //hour
+        break;
+    case 7:
+        num.data = num.data; //g
+        break;
+    case 8:
+        num.data = num.data / 1000; //kg
+        break;
+    case 9:
+        num.data = num.data / 1000 / 1000; //ton
+        break;
+
+    default:
+        cout << "default case=0";
+        break;
+    }
+    //return result;
+    // cout << "out letsGOback" << endl;
 }

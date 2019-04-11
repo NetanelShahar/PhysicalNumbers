@@ -10,8 +10,8 @@ class PhysicalNumber
 private:
 public:
   Unit num_unit;
-  double data;
-
+ long double data;
+ 
   //
   //constructor
   PhysicalNumber(double data, Unit unit_type)
@@ -26,7 +26,7 @@ public:
   // //
   // (+) and (-) operators
   PhysicalNumber operator+(const PhysicalNumber &other);
-  PhysicalNumber operator-(PhysicalNumber &other);
+  PhysicalNumber operator-(const PhysicalNumber &other);
   // //
   // //(+=) and (-=) operators
   PhysicalNumber &operator+=(const PhysicalNumber &other);
@@ -37,25 +37,27 @@ public:
   const PhysicalNumber operator-();
   // //
   const bool operator>(const PhysicalNumber &other);
-  // const bool operator<(const PhysicalNumber &other);
-  // const bool operator<=(const PhysicalNumber &other);
-  // const bool operator>=(const PhysicalNumber &other);
-  // const bool operator==(const PhysicalNumber &other);
-  // const bool operator!=(const PhysicalNumber &other);
+  const bool operator<(const PhysicalNumber &other);
+  const bool operator<=(const PhysicalNumber &other);
+  const bool operator>=(const PhysicalNumber &other);
+  const bool operator==(const PhysicalNumber &other);
+  const bool operator!=(const PhysicalNumber &other);
 
   PhysicalNumber &operator++();
   PhysicalNumber &operator--();
 
-  // friend ostream &operator<<(ostream &os, const PhysicalNumber &c);
-  // friend istream &operator>>(istream &is, PhysicalNumber &c);
+  friend ostream &operator<<(ostream &os, const PhysicalNumber &c);
+  friend istream &operator>>(istream &is, PhysicalNumber &c);
 
   // ///////////////////////////////////////////////////////////
   // bool unitCheck(PhysicalNumber first, PhysicalNumber second);
   // int whichNum();     ////  MAYBE I WILL USE IT LATER    ////
   string whichUnit();
   bool sameFamily(const PhysicalNumber &other);
+  void makeITsimple(PhysicalNumber &num);
+  void letsGOback(PhysicalNumber &num);
 };
-// ostream &operator<<(ostream &os, const PhysicalNumber &c);
-// istream &operator>>(istream &is, PhysicalNumber &c);
+ostream &operator<<(ostream &os, const PhysicalNumber &c);
+istream &operator>>(istream &is, PhysicalNumber &c);
 
 } // namespace ariel

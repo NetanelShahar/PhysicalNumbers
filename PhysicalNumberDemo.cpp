@@ -41,22 +41,29 @@ int main()
     //     cout << ex.what() << endl; // Prints "Units do not match - [m] cannot be converted to [kg]"
     //   }
 
-    PhysicalNumber a(443, Unit::KM);
-    PhysicalNumber b(7, Unit::M);
+    PhysicalNumber a(0, Unit::G);
+    PhysicalNumber b(1, Unit::TON);
     // cout<<b.num_unit<<endl;
+    b+a;
+    cout << a+b << endl;
 
     // PhysicalNumber c = a + b;
+
     // cout << c.data << endl
     //      << c.num_unit << endl;
 
+    // bool res= b==a;
     // a += b;
-    --a;
-    cout << a.data << endl;
-    ++a;
-    cout << a.data << endl;
-        //  << a.num_unit << endl
-        //  << b.data << endl
-        //  << b.num_unit << endl;
+    // a += b;
+
+    // --a;
+    // cout << res << endl;
+    // ++a;
+    // cout << a.data << endl;
+
+    //  << a.num_unit << endl
+    //  << b.data << endl
+    //  << b.num_unit << endl;
 
     // cout<<a.sameFamily(b)<<endl;
   }
