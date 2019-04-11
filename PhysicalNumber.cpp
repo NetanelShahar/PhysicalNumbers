@@ -288,54 +288,7 @@ istream &ariel::operator>>(istream &is, PhysicalNumber &pn)
     }
     return is;
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// bool PhysicalNumber::unitCheck(PhysicalNumber first, PhysicalNumber second)
-// {
-//     if (first.num_unit == second.num_unit)
-//         return true;
-//     return false;
-// }
-
-// int PhysicalNumber::whichNum(Unit unit)      ////////////   NOT USEFULL FOR NOW, MAYBE I WILL USE IT LATER    ///////////////////
-// {
-//     int result = 0;
-//     switch (this->num_unit)
-//     {
-//     case Unit::CM:
-//         result = 1;
-//         break;
-//     case Unit::M:
-//         result = 2;
-//         break;
-//     case Unit::KM:
-//         result = 3;
-//         break;
-//     case Unit::SEC:
-//         result = 4;
-//         break;
-//     case Unit::MIN:
-//         result = 5;
-//         break;
-//     case Unit::HOUR:
-//         result = 6;
-//         break;
-//     case Unit::G:
-//         result = 7;
-//         break;
-//     case Unit::KG:
-//         result = 8;
-//         break;
-//     case Unit::TON:
-//         result = 9;
-//         break;
-
-//     default:
-//         cout << "default case=0";
-//         break;
-//     }
-//     return result;
-// }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 string PhysicalNumber::whichUnit()
 {
@@ -404,9 +357,6 @@ bool PhysicalNumber::sameFamily(const PhysicalNumber &other)
 
 void PhysicalNumber::makeITsimple(PhysicalNumber &num)
 {
-    // cout << "in makeITsimple" << endl;
-
-    // int result=0;
     switch (num.num_unit)
     {
     case 1:
@@ -417,7 +367,6 @@ void PhysicalNumber::makeITsimple(PhysicalNumber &num)
         break;
     case 3:
         num.data = num.data * 1000 * 100; //km
-        // cout << num.data << endl;
         break;
     case 4:
         num.data = num.data; //sec
@@ -442,16 +391,10 @@ void PhysicalNumber::makeITsimple(PhysicalNumber &num)
         cout << "default case=0";
         break;
     }
-    // cout << "out makeITsimple" << endl;
-
-    //return result;
 }
 
 void PhysicalNumber::letsGOback(PhysicalNumber &num)
 {
-    // cout << "in letsGOback" << endl;
-
-    // int result=0;
     switch (num.num_unit)
     {
     case 1:
@@ -486,6 +429,4 @@ void PhysicalNumber::letsGOback(PhysicalNumber &num)
         cout << "default case=0";
         break;
     }
-    //return result;
-    // cout << "out letsGOback" << endl;
 }

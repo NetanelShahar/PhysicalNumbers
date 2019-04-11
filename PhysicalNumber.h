@@ -12,7 +12,6 @@ public:
   Unit num_unit;
  long double data;
  
-  //
   //constructor
   PhysicalNumber(double data, Unit unit_type)
   {
@@ -22,20 +21,18 @@ public:
 
   ~PhysicalNumber() {}
 
-  // PhysicalNumber(double data, Unit unit);    ///// I THINK TO REMOVE IT!!!   /////////
-  // //
   // (+) and (-) operators
   PhysicalNumber operator+(const PhysicalNumber &other);
   PhysicalNumber operator-(const PhysicalNumber &other);
-  // //
-  // //(+=) and (-=) operators
+
+  // (+=) and (-=) operators
   PhysicalNumber &operator+=(const PhysicalNumber &other);
   PhysicalNumber &operator-=(const PhysicalNumber &other);
-  // //
-  // // onary (+) and (-) operators
+
+  // onary (+) and (-) operators
   const PhysicalNumber operator+();
   const PhysicalNumber operator-();
-  // //
+
   const bool operator>(const PhysicalNumber &other);
   const bool operator<(const PhysicalNumber &other);
   const bool operator<=(const PhysicalNumber &other);
@@ -49,9 +46,6 @@ public:
   friend ostream &operator<<(ostream &os, const PhysicalNumber &c);
   friend istream &operator>>(istream &is, PhysicalNumber &c);
 
-  // ///////////////////////////////////////////////////////////
-  // bool unitCheck(PhysicalNumber first, PhysicalNumber second);
-  // int whichNum();     ////  MAYBE I WILL USE IT LATER    ////
   string whichUnit();
   bool sameFamily(const PhysicalNumber &other);
   void makeITsimple(PhysicalNumber &num);
