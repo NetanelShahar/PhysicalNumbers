@@ -87,13 +87,13 @@ PhysicalNumber &PhysicalNumber::operator-=(const PhysicalNumber &other)
     return *this;
 }
 
-const PhysicalNumber PhysicalNumber::operator+() //////////////////      CHECK ABOUT THE UNARY!!!!!       //////////
+const PhysicalNumber PhysicalNumber::operator+() 
 {
-    return PhysicalNumber(this->data, this->num_unit); ///////////////////////////////////////////////////////////////////
+    return PhysicalNumber(this->data, this->num_unit); 
 }
-const PhysicalNumber PhysicalNumber::operator-() ///////////////////////////////////////////////////////////////////
+const PhysicalNumber PhysicalNumber::operator-() 
 {
-    return PhysicalNumber(-1 * this->data, this->num_unit); //////////////////      CHECK ABOUT THE UNARY!!!!!       //////////
+    return PhysicalNumber(-1 * this->data, this->num_unit); 
 }
 
 const bool PhysicalNumber::operator>(const PhysicalNumber &other)
@@ -256,14 +256,6 @@ ostream &ariel::operator<<(ostream &os, const PhysicalNumber &pn)
 
     return (os << pn.data << '[' << type << ']');
 }
-////////////////////////////////////////////////////             REWRITE!!!!!!!!!!            /////////////////////////////////////
-bool is_number(const std::string &s)
-{
-    std::string::const_iterator it = s.begin();
-    while (it != s.end() && std::isdigit(*it))
-        ++it;
-    return !s.empty() && it == s.end();
-}
 
 istream &ariel::operator>>(istream &is, PhysicalNumber &pn)
 {
@@ -303,7 +295,6 @@ istream &ariel::operator>>(istream &is, PhysicalNumber &pn)
 
     return is;
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 string PhysicalNumber::whichUnit()
 {
