@@ -4,12 +4,20 @@
 #include <iostream>
 using namespace std;
 
-namespace ariel{
+namespace ariel
+{
 
-enum Unit {
-    
+enum Unit
+{
 
-    CM=1 , M , KM , SEC , MIN, HOUR , G , KG , TON
+    CM = 1,
+    M,
+    KM,
+    SEC,
+    MIN,
+    HOUR,
+    G,
+    KG,
+    TON
 };
-
 };

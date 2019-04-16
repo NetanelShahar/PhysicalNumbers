@@ -174,12 +174,18 @@ const bool PhysicalNumber::operator==(const PhysicalNumber &other)
 
     makeITsimple(*this);
     makeITsimple(*Ptemp);
-
-    bool ans = this->data == Ptemp->data;
+    
+    cout << this->data << " " << Ptemp->data << endl;
+    if (this->data == Ptemp->data)
+    {
+        letsGOback(*this);
+        return true;
+    }
 
     letsGOback(*this);
+    return false;
 
-    return ans;
+  
 }
 const bool PhysicalNumber::operator!=(const PhysicalNumber &other)
 {
@@ -192,7 +198,7 @@ const bool PhysicalNumber::operator!=(const PhysicalNumber &other)
     makeITsimple(*this);
     makeITsimple(*Ptemp);
 
-    bool ans = this->data > Ptemp->data;
+    bool ans = (this->data > Ptemp->data) || (this->data < Ptemp->data);
 
     letsGOback(*this);
 
@@ -261,31 +267,40 @@ bool is_number(const std::string &s)
 
 istream &ariel::operator>>(istream &is, PhysicalNumber &pn)
 {
-    string num, s, type;
-    bool flag = false;
-    is >> s;
-    num = s.substr(0, s.find("["));
-    if (is_number(num))
-    {
-        printf("iiii");
-        flag = true;
-        pn.data = stod(num);
-    }
+    string str;
+    is >> str;
+    string number = str.substr(0, str.find('['));
+    if (str.find(']') == 0 || str.find('[') == 0 || str.find('[') == string::npos || str.find(']') == string::npos || str.find('[') > str.find(']') || str.find('[') + 1 == str.find(']'))
+        return is;
 
-    type = s.substr(s.find("[") + 1, s.length() - s.find("[") - 2);
-    for (size_t i = 0; i < 9; i++)
-    {
-        if (name[i] == type)
-        {
-            pn.data = (Unit)i;
-            flag = true;
-        }
-    }
+    string input = str.substr(str.find('[') + 1, str.find(']') - str.find('[') - 1);
 
-    if (flag == false)
-    {
-        __throw_invalid_argument("syntaxt not good");
-    }
+    if (input.compare("cm") == 0)
+        pn.num_unit = Unit::CM;
+    else if (input.compare("m") == 0)
+        pn.num_unit = Unit::M;
+    else if (input.compare("km") == 0)
+        pn.num_unit = Unit::KM;
+    else if (input.compare("sec") == 0)
+        pn.num_unit = Unit::SEC;
+    else if (input.compare("min") == 0)
+        pn.num_unit = Unit::MIN;
+    else if (input.compare("hour") == 0)
+        pn.num_unit = Unit::HOUR;
+    else if (input.compare("g") == 0)
+        pn.num_unit = Unit::G;
+    else if (input.compare("kg") == 0)
+        pn.num_unit = Unit::KG;
+    else if (input.compare("ton") == 0)
+        pn.num_unit = Unit::TON;
+    else
+        return is;
+
+    if (stod(number) >= 0)
+        pn.data = (stod(number));
+    else
+        return is;
+
     return is;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

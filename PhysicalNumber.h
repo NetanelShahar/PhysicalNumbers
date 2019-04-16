@@ -10,8 +10,8 @@ class PhysicalNumber
 private:
 public:
   Unit num_unit;
- long double data;
- 
+  long double data;
+
   //constructor
   PhysicalNumber(double data, Unit unit_type)
   {
@@ -42,6 +42,18 @@ public:
 
   PhysicalNumber &operator++();
   PhysicalNumber &operator--();
+  PhysicalNumber operator++(int flag)
+  {
+    PhysicalNumber copy = *this;
+    data++;
+    return copy;
+  }
+  PhysicalNumber operator--(int flag)
+  {
+    PhysicalNumber copy = *this;
+    data--;
+    return copy;
+  }
 
   friend ostream &operator<<(ostream &os, const PhysicalNumber &c);
   friend istream &operator>>(istream &is, PhysicalNumber &c);
