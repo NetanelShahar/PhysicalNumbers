@@ -270,7 +270,7 @@ istream &ariel::operator>>(istream &is, PhysicalNumber &pn)
     string str;
     is >> str;
     string number = str.substr(0, str.find('['));
-    if (str.find(']') == 0 || str.find('[') == 0 || str.find('[') == string::npos || str.find(']') == string::npos || str.find('[') > str.find(']') || str.find('[') + 1 == str.find(']'))
+    if (str.find(']') == 0 || str.find('[') == 0 || str.find('[') > str.find(']') || str.find('[') + 1 == str.find(']'))
         return is;
 
     string input = str.substr(str.find('[') + 1, str.find(']') - str.find('[') - 1);
